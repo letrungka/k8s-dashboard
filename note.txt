@@ -1,0 +1,24 @@
+1. INSTALL DASHBOARD
+https://github.com/kubernetes/dashboard/tree/master/docs/user
+
+- For self TLS port 443 > 8443
+https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml
+
+- For no TLS: 80 > 9090
+https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/alternative.yaml
+
+
+2. Install metrics-server
+
+helm repo add stable https://charts.helm.sh/stable
+helm repo update
+
+helm install  metrics-server stable/metrics-server  \
+--namespace kubernetes-dashboard --set args={"--kubelet-insecure-tls=true, \
+--kubelet-preferred-address-types=InternalIP\,Hostname\,ExternalIP"}
+
+3. Intall Ingress
+
+4. Create RBAC: read-only user
+
+5. Create RBAC: admin for each namespace

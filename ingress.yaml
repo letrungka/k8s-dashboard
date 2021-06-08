@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+   namespace: kubernetes-dashboard     
+   name: kubernetes-dashboard
+   annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false" # Use init ssl on AWS ALB
+spec:
+  rules:
+  - host: <domain.com>
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: kubernetes-dashboard
+            servicePort: 80
